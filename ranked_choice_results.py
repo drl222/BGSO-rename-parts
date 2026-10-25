@@ -26,7 +26,7 @@ def run_stv(filename):
         ordered_votes = [sorted([(ordering_text_to_number[order_i], candidates[choice_i]) for choice_i, order_i in enumerate(row)]) for row in csvreader]
         ballots = [Ballot([candidate for order, candidate in vote]) for vote in ordered_votes]
 
-    election_result = pyrankvote.preferential_block_voting(candidates, ballots, 2)
+    election_result = pyrankvote.single_transferable_vote(candidates, ballots, 2)
     winners = election_result.get_winners()
 
     print(f"TOTAL NUMBER OF BALLOTS: {len(ballots)}")
